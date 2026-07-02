@@ -1,7 +1,3 @@
-// Browser-only OCR via PaddleOCR.js (PP-OCRv6 English, default model).
-// Runs entirely in the browser (WASM). Models are fetched on first use and
-// cached by the browser afterwards.
-
 type OcrInstance = Awaited<ReturnType<typeof import("@paddleocr/paddleocr-js").PaddleOCR.create>>;
 
 let ocrPromise: Promise<OcrInstance> | null = null;
@@ -13,12 +9,14 @@ export function getOcr(): Promise<OcrInstance> {
   if (!ocrPromise) {
     const p = (async () => {
       const { PaddleOCR } = await import("@paddleocr/paddleocr-js");
-      return PaddleOCR.create({
-        lang: "en",
-        ocrVersion: "PP-OCRv6",
-        worker: true,
-        ortOptions: { backend: "auto" },
-      });
+return PaddleOCR.create({
+  textDetectionModelName: "PP-OCRv6_tiny_det",
+  textRecognitionModelName: "PP-OCRv6_tiny_rec",
+  worker: true,
+  ortOptions: {
+    backend: "auto"
+  },
+});
     })();
     ocrPromise = p;
     p.catch(() => {
