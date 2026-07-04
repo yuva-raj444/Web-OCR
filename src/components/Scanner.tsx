@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Camera, Image as ImageIcon, X, Loader2 } from "lucide-react";
+import { Camera, Image as ImageIcon, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
@@ -108,11 +108,8 @@ export function Scanner({ open, onOpenChange, onScanned }: Props) {
       <DialogContent
         className="p-0 gap-0 overflow-hidden max-w-none w-screen h-[100dvh] sm:h-[100dvh] rounded-none border-0 flex flex-col translate-x-0 translate-y-0 left-0 top-0 data-[state=open]:slide-in-from-bottom-4 data-[state=closed]:slide-out-to-bottom-4"
       >
-        <DialogHeader className="px-4 py-3 border-b flex flex-row items-center justify-between space-y-0 shrink-0">
+        <DialogHeader className="px-4 py-3 border-b flex flex-row items-center space-y-0 shrink-0">
           <DialogTitle>Scan text</DialogTitle>
-          <Button variant="ghost" size="icon" onClick={() => onOpenChange(false)}>
-            <X className="w-4 h-4" />
-          </Button>
         </DialogHeader>
 
         <div className="relative bg-black flex-1 min-h-0 flex items-center justify-center">
